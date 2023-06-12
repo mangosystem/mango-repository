@@ -3,7 +3,7 @@
 
 	--REPOSITORY SERVER--
 	<repository>
-		<id>mg-repository</id>
+		<id>mango-repository</id>
 		<url>https://github.com/mangosystem/mango-repository/snapshots</url>
 	</repository>
 
