@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =======================================================================    
+        Maven Project Configuration File                                        
+                                                                                
+        The Geotools Project                                                    
+            http://www.geotools.org/                                            
+                                                                                
+        Version: $Id$              
+     ======================================================================= -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                                  http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <!-- =========================================================== -->
+  <!--     Module Description                                      -->
+  <!-- =========================================================== -->
+  <groupId>org.geotools</groupId>
+  <artifactId>gt-process-spatialstatistics</artifactId>
+  <packaging>jar</packaging>
+  <name>Process Spatialstatistics</name>
+  <description>Processes for spatial statistics.</description>
+  <version>22-SNAPSHOT</version>
+  <url>https://github.com/mangosystem/opengxt</url>
+  
+  <licenses>
+    <license>
+      <name>Lesser General Public License (LGPL)</name>
+      <url>http://www.gnu.org/copyleft/lesser.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <imageio.ext.version>1.3.2</imageio.ext.version>
+    <jaiext.version>1.1.12</jaiext.version>
+    <jt.version>1.5.0</jt.version>
+    <commons.math3.version>3.6</commons.math3.version>
+    <ejml.version>0.34</ejml.version>
+    <allow.test.skip>true</allow.test.skip>
+    <allow.test.failure.ignore>true</allow.test.failure.ignore>
+  </properties>
+  
+  <repositories>
+    <repository>
+      <id>central.maven.org</id>
+      <name>Central Maven repository</name>
+      <url>http://central.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    
+    <repository>
+      <id>osgeo</id>
+      <name>OSGeo Nexus Release Repository</name>
+      <url>https://repo.osgeo.org/repository/release/</url>
+      <!-- contains release (including third-party-dependences)                            -->
+      <!-- ucar (https://artifacts.unidata.ucar.edu/content/repositories/unidata-releases) -->
+      <!-- geosolutions (http://maven.geo-solutions.it/)                                   -->
+      <snapshots><enabled>false</enabled></snapshots>
+      <releases><enabled>true</enabled></releases>
+    </repository>
+
+    <repository>
+      <id>osgeo-snapshot</id>
+      <name>OSGeo Nexus Snapshot Repository</name>
+      <url>https://repo.osgeo.org/repository/snapshot/</url>
+      <snapshots><enabled>true</enabled></snapshots>
+      <releases><enabled>false</enabled></releases>
+    </repository>
+    
+    <repository>
+      <id>geosolutions</id>
+      <name>GeoSolutions Repository</name>
+      <url>http://maven.geo-solutions.it</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    
+    <repository>
+      <id>maven-restlet</id>
+      <name>Restlet Maven Repository</name>
+      <url>http://maven.restlet.org</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  
+  <!-- =========================================================== -->
+  <!--     Developers and Contributors                             -->
+  <!-- =========================================================== -->
+  <developers>
+    <developer>
+      <id>mapplus</id>
+      <name>Minpa Lee</name>
+      <email>mapplus@gmail.com</email>
+      <organization>Mango System</organization>
+      <organizationUrl>http://onspatial.com</organizationUrl>
+      <roles>
+        <role>Module Maintainer</role>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+  </developers>
+  
+  <!-- =========================================================== -->
+  <!--     Dependency Management                                   -->
+  <!-- =========================================================== -->
+  <dependencies>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-referencing</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-main</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-coverage</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-process</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-grid</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-image</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-jdbc</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-brewer</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-geotiff</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-shapefile</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools.xsd</groupId>
+      <artifactId>gt-xsd-gml2</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools.xsd</groupId>
+      <artifactId>gt-xsd-gml3</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools.xsd</groupId>
+      <artifactId>gt-xsd-sld</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-math3</artifactId>
+      <version>${commons.math3.version}</version>
+    </dependency>
+    
+    <!-- EJML -->
+    <dependency>
+        <groupId>org.ejml</groupId>
+        <artifactId>ejml-simple</artifactId>
+        <version>${ejml.version}</version>
+    </dependency>
+    
+    <!-- Java Advanced Imaging (JAI) -->
+    <dependency>
+      <groupId>javax.media</groupId>
+      <artifactId>jai_core</artifactId>
+      <version>1.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.media</groupId>
+      <artifactId>jai_codec</artifactId>
+      <version>1.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.media</groupId>
+      <artifactId>jai_imageio</artifactId>
+      <version>1.1</version>
+    </dependency>
+  
+    <!-- ImageIO-Ext -->
+    <dependency>
+      <groupId>it.geosolutions.imageio-ext</groupId>
+      <artifactId>imageio-ext-tiff</artifactId>
+      <version>${imageio.ext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.imageio-ext</groupId>
+      <artifactId>imageio-ext-arcgrid</artifactId>
+      <version>${imageio.ext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.imageio-ext</groupId>
+      <artifactId>imageio-ext-utilities</artifactId>
+      <version>${imageio.ext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.imageio-ext</groupId>
+      <artifactId>imageio-ext-streams</artifactId>
+      <version>${imageio.ext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.imageio-ext</groupId>
+      <artifactId>imageio-ext-geocore</artifactId>
+      <version>${imageio.ext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.imageio-ext</groupId>
+      <artifactId>imageio-ext-png</artifactId>
+      <version>${imageio.ext.version}</version>
+    </dependency> 
+    
+    <!-- JAITools -->
+    <dependency>
+      <groupId>org.jaitools</groupId>
+      <artifactId>jt-utils</artifactId>
+      <version>${jt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaitools</groupId>
+      <artifactId>jt-zonalstats</artifactId>
+      <version>${jt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaitools</groupId>
+      <artifactId>jt-rangelookup</artifactId>
+      <version>${jt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaitools</groupId>
+      <artifactId>jt-contour</artifactId>
+      <version>${jt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaitools</groupId>
+      <artifactId>jt-vectorize</artifactId>
+      <version>${jt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaitools</groupId>
+      <artifactId>jt-vectorbinarize</artifactId>
+      <version>${jt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.7</version>
+    </dependency>
+    
+    <!-- JAIExt -->
+    <dependency>
+      <groupId>it.geosolutions.jaiext.affine</groupId>
+      <artifactId>jt-affine</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.algebra</groupId>
+      <artifactId>jt-algebra</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.bandmerge</groupId>
+      <artifactId>jt-bandmerge</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.bandselect</groupId>
+      <artifactId>jt-bandselect</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.bandcombine</groupId>
+      <artifactId>jt-bandcombine</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.border</groupId>
+      <artifactId>jt-border</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.buffer</groupId>
+      <artifactId>jt-buffer</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.crop</groupId>
+      <artifactId>jt-crop</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.lookup</groupId>
+      <artifactId>jt-lookup</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.mosaic</groupId>
+      <artifactId>jt-mosaic</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.nullop</groupId>
+      <artifactId>jt-nullop</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.rescale</groupId>
+      <artifactId>jt-rescale</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.stats</groupId>
+      <artifactId>jt-stats</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.warp</groupId>
+      <artifactId>jt-warp</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.zonal</groupId>
+      <artifactId>jt-zonal</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.binarize</groupId>
+      <artifactId>jt-binarize</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.format</groupId>
+      <artifactId>jt-format</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.colorconvert</groupId>
+      <artifactId>jt-colorconvert</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.errordiffusion</groupId>
+      <artifactId>jt-errordiffusion</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.orderdither</groupId>
+      <artifactId>jt-orderdither</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.colorindexer</groupId>
+      <artifactId>jt-colorindexer</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.imagefunction</groupId>
+      <artifactId>jt-imagefunction</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.piecewise</groupId>
+      <artifactId>jt-piecewise</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.classifier</groupId>
+      <artifactId>jt-classifier</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.jaiext.rlookup</groupId>
+      <artifactId>jt-rlookup</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency> 
+    <dependency>
+      <groupId>it.geosolutions.jaiext.vectorbin</groupId>
+      <artifactId>jt-vectorbin</artifactId>
+      <version>${jaiext.version}</version>
+    </dependency> 
+    
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-sample-data</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-property</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-epsg-hsql</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <!-- ======================================================= -->
+      <!--     Compilation.                                        -->
+      <!-- ======================================================= -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>  <!-- The -source argument for the Java compiler. -->
+          <target>1.8</target>  <!-- The -target argument for the Java compiler. -->
+          <debug>true</debug>   <!-- Whether to include debugging information.   -->
+          <encoding>UTF-8</encoding> <!-- The -encoding argument for the Java compiler. -->
+          <fork>${fork.javac}</fork>
+          <maxmem>${javac.maxHeapSize}</maxmem>
+        </configuration>
+      </plugin>
+    
+      <!-- ======================================================= -->
+      <!--     JAR packaging.                                      -->
+      <!-- ======================================================= -->
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <archive>
+            <index>true</index>
+            <manifest>
+              <addClasspath>false</addClasspath>
+            </manifest>
+            <manifestEntries>
+              <Specification-Title>OpenGXT</Specification-Title>
+              <Specification-Version>${project.version}</Specification-Version>
+              <Specification-Vendor>${project.url}</Specification-Vendor>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+      
+      <!-- ======================================================= -->
+      <!--     Source packaging.                                      -->
+      <!-- ======================================================= -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <inherited>true</inherited>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+    </plugins>
+    
+    <pluginManagement>
+      <plugins>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <versionRange>[2.1.2,)</versionRange>
+                    <goals>
+                      <goal>revision</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
