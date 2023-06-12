@@ -4,7 +4,7 @@
 	--REPOSITORY SERVER--
 	<repository>
 		<id>mg-repository</id>
-		<url>https://github.com/mangosystem/mg-repository/snapshots</url>
+		<url>https://github.com/mangosystem/mango-repository/snapshots</url>
 	</repository>
 
 		--DEPENDANCY--
